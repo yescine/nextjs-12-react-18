@@ -21,6 +21,9 @@ const Home: NextPage = () => {
         <Link href="/docs">
           <a>Docs</a>
         </Link>
+        <Link href="/users">
+          <a>Users</a>
+        </Link>
       </nav>
       <h1>Home page</h1>
     </div>
