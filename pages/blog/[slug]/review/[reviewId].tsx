@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-function index() {
+function Index() {
   const { slug, reviewId } = useRouter().query;
   return (
     <div>
@@ -11,4 +11,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

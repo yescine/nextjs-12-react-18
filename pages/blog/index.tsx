@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import {useRouter} from 'next/router';
 
-function index() {
+function Index() {
   const router = useRouter()
 
   const addBlog=()=>{
@@ -26,4 +26,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
