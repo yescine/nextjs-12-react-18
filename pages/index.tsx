@@ -35,6 +35,11 @@ const Home: NextPage = () => {
         </Link>
       </nav>
       <h1>Home page</h1>
+      <div style={{ textAlign: "center" }}>
+        <Link href="/company">
+          <a className={styles.sideMenu}>Company</a>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -114,3 +114,11 @@
     flex-direction: column;
   }
 }
+
+.sideMenu {
+  padding: 1rem;
+  margin: 1rem;
+  font-weight: bold;
+  background-color: lightgreen;
+  border: 3px dashed darkgreen ;
+}
