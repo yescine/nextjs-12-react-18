@@ -20,7 +20,7 @@ const createCompany = () => ({
   isActive: chance.bool(),
 });
 
-const data = Array.from(Array(10).keys()).map((elem): CompanyProfile => createCompany());
+export const data = Array.from(Array(10).keys()).map((elem): CompanyProfile => createCompany());
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<CompanyProfile[]>) {
   switch (req.method) {

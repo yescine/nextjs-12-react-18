@@ -11,4 +11,9 @@ export default class Rest {
     return data
   }
 
+  static async getCompany (_id:string|string[]){
+    const data = (await (await fetch(`http://localhost:3000/api/company/${_id}`)).json()) as CompanyProfile;
+    return data
+  }
+
 }

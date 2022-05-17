@@ -1,6 +1,8 @@
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { CompanyProfile } from "api/company";
+import Link from "next/link";
+
 import Rest from "service/rest";
 interface Props {
   companies: CompanyProfile[];
@@ -39,7 +41,11 @@ const Comapny = ({ companies }: Props) => {
           return (
             <ul key={company._id}>
               <li>
-                <h4 style={{ color: "darkcyan" }}>{company.name} </h4>
+                <Link href={`/company/${company._id}`}>
+                  <a>
+                    <h4 style={{ color: "darkcyan" }}>{company.name} </h4>
+                  </a>
+                </Link>
               </li>
             </ul>
           );
