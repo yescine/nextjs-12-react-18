@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { signIn, signOut } from "next-auth/react";
 
 function Nav() {
   return (
@@ -23,6 +24,28 @@ function Nav() {
       </Link>
       <Link href="/news">
         <a>News</a>
+      </Link>
+      <Link href="/api/auth/signin">
+        <a
+          // onClick={(evt) => {
+          //   evt.preventDefault();
+          //   signIn();
+          // }}
+          style={{ color: "darkgray" }}
+        >
+          sign-in
+        </a>
+      </Link>
+      <Link href="/api/auth/signout">
+        <a
+          onClick={(evt) => {
+            evt.preventDefault();
+            signOut();
+          }}
+          style={{ color: "darkgray" }}
+        >
+          sign-out
+        </a>
       </Link>
     </nav>
   );
