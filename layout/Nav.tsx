@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Nav() {
+  const { data, status } = useSession();
+  console.log({ data });
   return (
     <nav>
       <Link href="/">
@@ -25,28 +27,32 @@ function Nav() {
       <Link href="/news">
         <a>News</a>
       </Link>
-      <Link href="/api/auth/signin">
-        <a
-          // onClick={(evt) => {
-          //   evt.preventDefault();
-          //   signIn();
-          // }}
-          style={{ color: "darkgray" }}
-        >
-          sign-in
-        </a>
-      </Link>
-      <Link href="/api/auth/signout">
-        <a
-          onClick={(evt) => {
-            evt.preventDefault();
-            signOut();
-          }}
-          style={{ color: "darkgray" }}
-        >
-          sign-out
-        </a>
-      </Link>
+      {status === "unauthenticated" && (
+        <Link href="/api/auth/signin">
+          <a
+            // onClick={(evt) => {
+            //   evt.preventDefault();
+            //   signIn();
+            // }}
+            style={{ color: "darkgray" }}
+          >
+            sign-in
+          </a>
+        </Link>
+      )}
+      {status === "authenticated" && (
+        <Link href="/api/auth/signout">
+          <a
+            onClick={(evt) => {
+              evt.preventDefault();
+              signOut();
+            }}
+            style={{ color: "darkgray" }}
+          >
+            sign-out
+          </a>
+        </Link>
+      )}
     </nav>
   );
 }

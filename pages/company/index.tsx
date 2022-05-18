@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { CompanyProfile } from "api/company";
 import Link from "next/link";
-
+import { getSession, signIn } from "next-auth/react";
 import Rest from "service/rest";
 interface Props {
   companies: CompanyProfile[];
@@ -21,9 +21,13 @@ const Comapny = ({ companies }: Props) => {
     ).json();
     return resp;
   };
-  // useEffect(() => {
-  //   saveCompany()
-  // }, []);
+  useEffect(() => {
+    const secureLog = async () => {
+      const session = await getSession();
+      if (!session) signIn();
+    };
+    secureLog();
+  }, []);
 
   return (
     <>
@@ -57,9 +61,18 @@ const Comapny = ({ companies }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const companies = await Rest.getCompanies();
+  const session = await getSession(ctx);
+
+  if (!session)
+    return {
+      redirect: {
+        destination: `/api/auth/signin?callbackUrl=http://localhost:3000/company`,
+        permanent: false,
+      },
+    };
   return {
     props: {
-      companies,
+      companies: session ? companies : [],
     },
   };
 };
